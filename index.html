@@ -28,6 +28,14 @@
 
           <p v-if="onSale">On Sale!</p>
           <p v-else>No promotion</p>
+
+          <ul>
+            <li v-for="detail in details">{{ detail }}</li>
+          </ul>
+          <div v-for="variant in variants" :key="variant.id">
+            {{ variant.color }}
+          </div>
+          <p>{{ sizes.join(', ') }}</p>
         </div>
       </div>
       <p>{{ description }}</p>

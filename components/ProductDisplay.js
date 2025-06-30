@@ -37,7 +37,7 @@ const productDisplay = {
         premium: Boolean
     },
 
-    setup(props) {
+    setup(props, { emit }) {
         const product = Vue.ref('Boots')
         const brand = Vue.ref('SE 331')
         const inventory = Vue.ref(100)
@@ -53,7 +53,7 @@ const productDisplay = {
         const inStock = Vue.computed(() => variants.value[selectedVariant.value].quantity > 0)
 
         const addToCart = () => {
-            console.log('Added to cart')
+            emit('add-to-cart', variants.value[selectedVariant.value].id)
         }
 
         const updateVariant = (index) => {

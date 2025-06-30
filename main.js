@@ -10,6 +10,7 @@ const app = createApp({
 
 // ✅ Register component
 app.component('product-display', productDisplay)
+app.component('product-details', productDetails)
 
 // ✅ Mount app
 app.mount('#app')

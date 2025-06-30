@@ -40,6 +40,9 @@ const productDisplay = {
             </button>
 
         </div>
+        <review-list v-if="reviews.length" :reviews="reviews"></review-list>
+        <review-form @review-submitted="addReview"></review-form>
+
       </div>
     </div>
   `,
@@ -52,6 +55,8 @@ const productDisplay = {
         const brand = Vue.ref('SE 331')
         const inventory = Vue.ref(100)
         const details = Vue.ref(['50% cotton', '30% wool', '20% polyester'])
+        const reviews = Vue.ref([])
+
         const variants = Vue.ref([
             { id: 2234, color: 'green', image: './assets/images/socks_green.jpg', quantity: 50 },
             { id: 2235, color: 'blue', image: './assets/images/socks_blue.jpg', quantity: 0 }
@@ -82,9 +87,14 @@ const productDisplay = {
             }
         })
 
+        function addReview(review) {
+            reviews.value.push(review)
+        }
+
         return {
             title, image, inStock, inventory, details, variants,
-            addToCart, updateVariant, shipping, details, removeFromCart
+            addToCart, updateVariant, shipping, details, removeFromCart, 
+            addReview, reviews
         }
     }
 }

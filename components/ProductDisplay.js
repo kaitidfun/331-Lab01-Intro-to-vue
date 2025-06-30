@@ -29,6 +29,16 @@ const productDisplay = {
           >
             Add To Cart
           </button>
+
+          <button
+            class="button"
+            :disabled="!inStock"
+            :class="{ disabledButton: !inStock }"
+            @click="removeFromCart"
+            >
+            Remove From Cart
+            </button>
+
         </div>
       </div>
     </div>
@@ -56,6 +66,10 @@ const productDisplay = {
             emit('add-to-cart', variants.value[selectedVariant.value].id)
         }
 
+        const removeFromCart = () => {
+            emit('remove-from-cart', variants.value[selectedVariant.value].id)
+        }
+
         const updateVariant = (index) => {
             selectedVariant.value = index
         }
@@ -70,7 +84,7 @@ const productDisplay = {
 
         return {
             title, image, inStock, inventory, details, variants,
-            addToCart, updateVariant, shipping, details
+            addToCart, updateVariant, shipping, details, removeFromCart
         }
     }
 }

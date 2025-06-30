@@ -15,14 +15,24 @@ createApp({
             '20% polyester'
         ])
         const variants = ref([
-            { id: 2234, color: 'green' },
-            { id: 2235, color: 'blue' }
+            { id: 2234, color: 'green', image: './assets/images/socks_green.jpg' },
+            { id: 2235, color: 'blue', image: './assets/images/socks_blue.jpg' }
         ])
         const sizes = ref([
             'S',
             'M',
             'L'
         ])
+        const cart = ref(0)
+        function addToCart() {
+            cart.value += 1
+        }
+        function updateImage(variantImage) {
+            image.value = variantImage
+        }
+        function toggleInStock() {
+            inStock.value = !inStock.value
+        }
 
         return {
             product, // ส่งออก product เพื่อให้ใช้ใน template ได้
@@ -34,7 +44,11 @@ createApp({
             onSale,
             details,
             variants,
-            sizes
+            sizes,
+            cart,
+            addToCart,
+            updateImage,
+            toggleInStock
         }
     }
 }).mount('#app') // เชื่อม Vue กับ HTML ที่มี id="app"
